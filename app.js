@@ -1,34 +1,59 @@
-var hello = "Hello,World";
+var user_hand = prompt('じゃんけんの手をグー、チョキ、パーから選んでください。');
 
-var str1 = "Hello";
-var str2 = "World!!";
+// じゃんけんの手をランダムに作成する関数を呼び出す
+var js_hand = getJShand();
 
-var orange = 100;
-var apple = 120;
+// ユーザの手とJavaScriptのじゃんけんの手を比べる関数を呼び出し、結果をjudgeに入れる
+var judge = winLose(user_hand, js_hand);
 
-if(orange < apple){
-  ("みかんの値段がりんごより安い");
-}else if(orange == apple){
-  ("みかんとりんごが同じ値段");
-}else{
-  ("みかんの値段がりんごより高い");
+// 結果を表示する
+alert('あなたの選んだ手は' + user_hand + 'です。\nJavaScriptの選んだ手は' + js_hand + 'です。\n結果は' + judge + 'です。');
+
+// ランダムでじゃんけんの手を作成する関数
+function getJShand(){
+  var js_hand_num = Math.floor( Math.random() * 3 );
+  var hand_name;
+
+  if(js_hand_num == 0){
+    hand_name = "グー";
+  } else if(js_hand_num == 1){
+    hand_name = "チョキ";
+  } else if(js_hand_num == 2){
+    hand_name = "パー";
+  }
+
+  return hand_name;
 }
-var max = 100;
-var num = 1;
-var count = 0;
 
-while(num < max){
-  num = num + 2;
-  count = count + 1;
+// ユーザの手とJavaScriptのじゃんけんの手を比べる関数
+function winLose(user, js){
+  var winLoseStr;
+
+  if(user == "グー"){
+    if(js == "グー"){
+      winLoseStr = "あいこ";
+    } else if(js == "チョキ"){
+      winLoseStr = "勝ち";
+    } else if(js == "パー"){
+      winLoseStr = "負け";
+    }
+  } else if(user == "チョキ"){
+    if(js == "グー"){
+      winLoseStr = "負け";
+    } else if(js == "チョキ"){
+      winLoseStr = "あいこ";
+    } else if(js == "パー"){
+      winLoseStr = "勝ち";
+    }
+  } else if(user == "パー"){
+    if(js == "グー"){
+      winLoseStr = "勝ち";
+    } else if(js == "チョキ"){
+      winLoseStr = "負け";
+    } else if(js == "パー"){
+      winLoseStr = "あいこ";
+    }
+  }
+
+  return winLoseStr;
 }
-
-
-var x = 1 + 10;
-var y = 5 - 2;
-var z = 7 * 3;
-var a = 5 / 5;
-alert( "1+10=" + x);
-alert( "5-2=" + y);
-alert( "7x3=" + z);
-alert( "5÷5=" + a);
-
